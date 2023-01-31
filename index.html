@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daalder Dashboard V1</title>
+    
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-4334b3e7.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-41ecb943.css">
+</head>
+<body>
+
+    <div class="bg-black h-screen">
+
+<!-- This is the fallback if no weather / kodi - just show a centralise clock -->
+        <div class="clock" x-data="clock" x-init="clockComponentInit()" x-show="$store.isAvailable.weather === false && $store.isAvailable.kodi === false">
+            <div class="flex items-center justify-center h-screen">
+                <div class="align-bottom">
+                    <span class="text-9xl bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap" x-text="getTime()"></span>
+<!--                    <span class="text-6xl bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap" x-text="getSeconds()"></span>-->
+                </div>
+            </div>
+        </div>
+
+<!-- If weather is available, but Kodi is not actively playing -->
+        <div class="weather" x-data="weather" x-init="weatherComponentInit()" x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false">
+
+            <span x-text="observations.data.temp" class="text-9xl bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap"></span>
+
+            <div class="absolute top-0 right-0 mt-1 mr-3">
+                <div class="clock" x-data="clock" x-init="clockComponentInit()">
+                    <span class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap" x-text="getTimeShort()"></span>
+                </div>
+            </div>
+
+            <div id="radar" class="absolute bottom-0 right-0 h-3/4 aspect-square m-0.5"></div>
+
+        </div>
+
+<!-- If Kodi is actively playing something -->
+        <div class="kodi" x-data="kodi" x-init="kodiComponentInit()" x-show="$store.isAvailable.kodi === true">
+            <div class="flex items-center justify-center h-screen">
+                <p>Kodi here...</p>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+</body>
+</html>
