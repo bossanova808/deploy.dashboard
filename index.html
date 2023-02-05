@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daalder Dashboard V1</title>
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-947bb66a.js"></script>
-  <link rel="stylesheet" href="/deploy.dashboard/assets/index-24de5acd.css">
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-8b8b1fe6.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-d502be93.css">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 <!-- This is the fallback if no weather / kodi - just show a centralised clock -->
 
         <div class="clock" x-data="clock" x-init="clockComponentInit()" x-show="$store.isAvailable.weather === false && $store.isAvailable.kodi === false" x-transition.duration.500ms>
-            <div class="flex items-center justify-center h-screen">
+            <div class="z-50 flex items-center justify-center h-screen">
                 <div class="align-bottom">
                     <span class="text-[11rem] bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTimeShort()"></span>
                     <span class="text-9xl bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap" x-text="getSeconds()"></span>
@@ -27,15 +27,15 @@
 
         <div class="weather" x-data="weather" x-init="weatherComponentInit()" x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
 
-            <div class="absolute top-0 right-0 mt-10 pr-10">
+            <div class="z-50 absolute top-0 right-0 mt-10 pr-10">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
                     <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
                 </div>
             </div>
 
-            <div class="absolute top-0 left-0 mt-10 ml-10">
+            <div class="absolute top-0 left-0 mt-10 ml-10" >
                 <div class="text-8xl font-semibold text-red-400 font-mono whitespace-nowrap" x-text="`⤒ ${forecastHigh}`"></div>
-                <div class="text-8xl font-semibold text-blue-400 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
+                <div class="text-8xl font-semibold text-blue-200 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
             </div>
 
             <div class="absolute bottom-0 right-0 mb-4 mr-10">
@@ -62,15 +62,17 @@
 
         <div class="kodi" x-data="kodi" x-init="kodiComponentInit()" x-show="$store.isAvailable.kodi === true" x-transition.duration.500ms>
 
-            <div class="absolute top-0 right-0 mt-10 pr-10">
+            <div class="z-50 absolute top-0 right-0 mt-10 pr-10">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
                     <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
                 </div>
             </div>
 
-            <img class="absolute top-0 left h-screen" :src="artwork" />
+            <div class="absolute top-0 left align-middle max-w-lg">
+                <img class="object-scale-down h-screen"  :src="artwork" />
+            </div>
 
-            <div class="absolute bottom-0 right-0 mb-10 mr-10" >
+            <div class="z-50 absolute bottom-0 right-0 mb-10 mr-10" >
                 <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="'-' + timeRemainingAsTime"></span>
             </div>
 
