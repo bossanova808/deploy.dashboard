@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daalder Dashboard V1</title>
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-541ac16f.js"></script>
-  <link rel="stylesheet" href="/deploy.dashboard/assets/index-af8f4983.css">
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-0f790a27.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-f07a69ac.css">
 </head>
 <body>
 
@@ -29,28 +29,28 @@
 
             <div class="absolute top-0 right-0 pr-10">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
-                    <span class="text-8xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
+                    <span class="text-8xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
                 </div>
             </div>
 
             <div class="absolute top-0 left-0 mt-10 ml-10">
-                <div class="text-7xl font-semibold text-red-400 font-mono whitespace-nowrap" x-text="`⤒ ${forecastHigh}`"></div>
-                <div class="text-7xl font-semibold text-blue-400 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
+                <div class="text-8xl font-semibold text-red-400 font-mono whitespace-nowrap" x-text="`⤒ ${forecastHigh}`"></div>
+                <div class="text-8xl font-semibold text-blue-400 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
             </div>
 
             <div class="absolute bottom-0 right-0 mb-10 mr-10">
                 <div class="grid grid-cols-1 justify-items-center">
                     <img :src="rainIcon" height="128" width="128"/>
-                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap" x-text="`Chance: ${rainChance}%`"></div>
-                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Amount: ${rainAmount}`"></div>
-                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Since 9am: ${rainSince9am}mm`"></div>
+                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap" x-text="`Chance: ${rainChance}%`"></div>
+                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Amount: ${rainAmount}`"></div>
+                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Since 9am: ${rainSince9am}mm`"></div>
                 </div>
             </div>
 
             <div class="absolute bottom-0 left-0">
                 <div class="grid grid-cols-1 justify-items-center">
-                    <img :src="icon" :alt="iconAlt" height="384" width="384"/>
-                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap m-0 ml-10" style="margin-top: -75px;" x-text="outlook"></div>
+                    <img :src="icon" :alt="iconAlt" height="400" width="400"/>
+                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap m-0 ml-10" style="margin-top: -75px;" x-text="outlook"></div>
                 </div>
             </div>
 
@@ -64,14 +64,14 @@
 
             <div class="absolute top-0 right-0 pr-10">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
-                    <span class="text-8xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
+                    <span class="text-8xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
                 </div>
             </div>
 
             <img class="absolute top-0 left h-screen" :src="artwork" />
 
             <div class="absolute bottom-0 right-0 mr-10" >
-                <span class="text-8xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="'-' + timeRemainingAsTime"></span>
+                <span class="text-8xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="'-' + timeRemainingAsTime"></span>
             </div>
 
         </div>
