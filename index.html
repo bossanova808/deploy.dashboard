@@ -27,7 +27,7 @@
 
         <div class="weather" x-data="weather" x-init="weatherComponentInit()" x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
 
-            <div class="absolute top-0 right-0 pr-10">
+            <div class="absolute top-0 right-0 mt-10 pr-10">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
                     <span class="text-8xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
                 </div>
@@ -62,7 +62,7 @@
 
         <div class="kodi" x-data="kodi" x-init="kodiComponentInit()" x-show="$store.isAvailable.kodi === true" x-transition.duration.500ms>
 
-            <div class="absolute top-0 right-0 pr-10">
+            <div class="absolute top-0 right-0 mt-10 pr-10">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
                     <span class="text-8xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
                 </div>
