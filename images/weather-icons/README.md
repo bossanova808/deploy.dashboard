@@ -34,6 +34,6 @@ Number, Description, BOM API `icon_descriptor`
 
 (* Apparently: icon number 3 ‘mostly_sunny’ if clear sky >= 30%, otherwise ‘partly_cloudy’.)
 
-Note teh above list is missing 5 & 7, and that 3 is actually two things! Total is 18 states of weather, so need to map to 36 icons.
+Note the above list is missing 5 & 7, and that 3 is actually two things! Total is 18 states of weather, so need to map to 36 icons.
 
 There is no real icon for frost from this set, so using a 'Thermometer & Snow' icon.

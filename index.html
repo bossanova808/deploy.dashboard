@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daalder Dashboard V1</title>
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-4b08fb1c.js"></script>
-  <link rel="stylesheet" href="/deploy.dashboard/assets/index-7cc9dff4.css">
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-541ac16f.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-af8f4983.css">
 </head>
 <body>
 
     <div class="bg-black h-screen">
 
-<!-- This is the fallback if no weather / kodi - just show a centralise clock -->
+<!-- This is the fallback if no weather / kodi - just show a centralised clock -->
+
         <div class="clock" x-data="clock" x-init="clockComponentInit()" x-show="$store.isAvailable.weather === false && $store.isAvailable.kodi === false" x-transition.duration.500ms>
             <div class="flex items-center justify-center h-screen">
                 <div class="align-bottom">
-                    <span class="text-[16rem] bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTimeShort()"></span>
-                    <span class="text-[12rem] bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap" x-text="getSeconds()"></span>
+                    <span class="text-[11rem] bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTimeShort()"></span>
+                    <span class="text-9xl bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap" x-text="getSeconds()"></span>
                 </div>
             </div>
         </div>
@@ -26,65 +27,52 @@
 
         <div class="weather" x-data="weather" x-init="weatherComponentInit()" x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
 
-            <!-- Future? Add Radar?  Probably not enough room -->
-            <!-- <div id="radar" class="absolute top-0 left-0 h-screen aspect-square "></div>-->
+            <div class="absolute top-0 right-0 pr-10">
+                <div class="clock" x-data="clock" x-init="clockComponentInit()">
+                    <span class="text-8xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
+                </div>
+            </div>
 
             <div class="absolute top-0 left-0 mt-10 ml-10">
-                <div class="text-9xl text-red-400 font-mono whitespace-nowrap" x-text="`⤒ ${forecastHigh}`"></div>
-                <div class="text-9xl text-blue-400 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
+                <div class="text-7xl font-semibold text-red-400 font-mono whitespace-nowrap" x-text="`⤒ ${forecastHigh}`"></div>
+                <div class="text-7xl font-semibold text-blue-400 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
             </div>
 
             <div class="absolute bottom-0 right-0 mb-10 mr-10">
-                <div class="grid grid-cols-1 justify-items-center leading-loose">
-                    <img :src="rainIcon" height="256" width="256"/>
-                    <div class="text-8xl text-amber-200 whitespace-nowrap" x-text="`Chance: ${rainChance}%`"></div>
-                    <div class="text-8xl text-amber-200 whitespace-nowrap pt-5" x-text="`Amount: ${rainAmount}`"></div>
-                    <div class="text-8xl text-amber-200 whitespace-nowrap pt-5" x-text="`Since 9am: ${rainSince9am}mm`"></div>
+                <div class="grid grid-cols-1 justify-items-center">
+                    <img :src="rainIcon" height="128" width="128"/>
+                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap" x-text="`Chance: ${rainChance}%`"></div>
+                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Amount: ${rainAmount}`"></div>
+                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Since 9am: ${rainSince9am}mm`"></div>
                 </div>
             </div>
 
             <div class="absolute bottom-0 left-0">
-
                 <div class="grid grid-cols-1 justify-items-center">
-                    <img :src="icon" :alt="iconAlt" height="768" width="768"/>
-                    <div class="text-9xl text-amber-200 whitespace-nowrap m-0 ml-10" style="margin-top: -175px;" x-text="outlook"></div>
-                </div>
-
-            </div>
-
-            <div class="absolute top-0 right-0 pl-10 pr-10">
-                <div class="clock" x-data="clock" x-init="clockComponentInit()">
-                    <span class="text-[13rem] bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
+                    <img :src="icon" :alt="iconAlt" height="384" width="384"/>
+                    <div class="text-5xl font-semibold text-amber-200 whitespace-nowrap m-0 ml-10" style="margin-top: -75px;" x-text="outlook"></div>
                 </div>
             </div>
 
-<!-- Not enough room for this really... -->
-<!--            <template x-if="observations">-->
-<!--                <div class="absolute bottom-0 right-0 mr-3">-->
-<!--                    <span x-text="observations.data.temp + '°'" class="text-9xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap"></span>-->
-<!--                </div>-->
-<!--            </template>-->
+
 
         </div>
 
 <!-- If Kodi is actively playing something -->
+
         <div class="kodi" x-data="kodi" x-init="kodiComponentInit()" x-show="$store.isAvailable.kodi === true" x-transition.duration.500ms>
 
-            <img class="absolute top-0 left h-screen" :src="artwork" />
-
-            <div class="absolute top-0 right-0 pl-10 pr-10">
+            <div class="absolute top-0 right-0 pr-10">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
-                    <span class="text-[13rem] bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
+                    <span class="text-8xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
                 </div>
             </div>
 
-            <div class="absolute bottom-0 right-0 mr-10" >
-                <span class="text-[13rem] bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="'-' + timeRemainingAsTime"></span>
-            </div>
+            <img class="absolute top-0 left h-screen" :src="artwork" />
 
-<!--            <div x-show="episode != '-1'" class="absolute bottom-0 left-0 ml-5"  >-->
-<!--                <span class="text-9xl bg-clip-text text-amber-200 font-mono whitespace-nowrap" x-text="season + 'x' + episode + ' - ' + title"></span>-->
-<!--            </div>-->
+            <div class="absolute bottom-0 right-0 mr-10" >
+                <span class="text-8xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="'-' + timeRemainingAsTime"></span>
+            </div>
 
         </div>
 
