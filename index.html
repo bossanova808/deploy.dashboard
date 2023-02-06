@@ -5,77 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daalder Dashboard V1</title>
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-8b8b1fe6.js"></script>
-  <link rel="stylesheet" href="/deploy.dashboard/assets/index-d502be93.css">
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-36bb7445.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-ed9cb4db.css">
 </head>
 <body>
 
     <div class="bg-black h-screen">
 
-<!-- This is the fallback if no weather / kodi - just show a centralised clock -->
+<!-- This is the fallback if no weather / kodi - just show a centralised full-screen clock -->
 
+        <!-- Full screen clock fallback if e.g. no network/weather available -->
         <div class="clock" x-data="clock" x-init="clockComponentInit()" x-show="$store.isAvailable.weather === false && $store.isAvailable.kodi === false" x-transition.duration.500ms>
+
             <div class="z-50 flex items-center justify-center h-screen">
                 <div class="align-bottom">
                     <span class="text-[11rem] bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTimeShort()"></span>
                     <span class="text-9xl bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 via-purple-500 font-mono whitespace-nowrap" x-text="getSeconds()"></span>
                 </div>
             </div>
+
         </div>
 
-<!-- If weather is available, but Kodi is not actively playing -->
+<!-- If Weather is available, but Kodi is not actively playing -->
 
         <div class="weather" x-data="weather" x-init="weatherComponentInit()" x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
+            <div class="clock" x-data="clock" x-init="clockComponentInit()">
 
-            <div class="z-50 absolute top-0 right-0 mt-10 pr-10">
-                <div class="clock" x-data="clock" x-init="clockComponentInit()">
-                    <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
+                <!-- Forthcoming High / Low -->
+                <div class="absolute top-0 left-0 mt-10 ml-10" >
+                    <div class="text-8xl font-semibold text-red-400 font-mono whitespace-nowrap" x-text="`⤒ ${forecastHigh}`"></div>
+                    <div class="text-8xl font-semibold text-blue-200 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
                 </div>
-            </div>
 
-            <div class="absolute top-0 left-0 mt-10 ml-10" >
-                <div class="text-8xl font-semibold text-red-400 font-mono whitespace-nowrap" x-text="`⤒ ${forecastHigh}`"></div>
-                <div class="text-8xl font-semibold text-blue-200 font-mono whitespace-nowrap" x-text="`⤓ ${forecastLow}`"></div>
-            </div>
-
-            <div class="absolute bottom-0 right-0 mb-4 mr-10">
-                <div class="grid grid-cols-1 justify-items-center">
-                    <img :src="rainIcon" height="128" width="128"/>
-                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap" x-text="`Chance: ${rainChance}%`"></div>
-                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Amount: ${rainAmount}`"></div>
-                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap pt-5" x-text="`Since 9am: ${rainSince9am}mm`"></div>
+                <div class="absolute top-0 right-0 mt-10 mr-10 max-w-3xl">
+                    <div class="grid grid-cols-1 text-right">
+                        <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap" x-text="`🌧   ${rainChance}% of ${rainAmount}`"></div>
+                        <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap" x-text="`(${rainSince9am}mm since 9am)`"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="absolute bottom-0 left-0">
-                <div class="grid grid-cols-1 justify-items-center">
-                    <img :src="icon" :alt="iconAlt" height="400" width="400"/>
-                    <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap m-0 ml-10" style="margin-top: -75px;" x-text="outlook"></div>
+                <!-- Outlook inc. icon -->
+                <div class="absolute bottom-0 left-0">
+                    <div class="grid grid-cols-1 justify-items-center">
+                        <img :src="icon" :alt="iconAlt" height="400" width="400"/>
+                        <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap m-0 ml-10" style="margin-top: -75px;" x-text="outlook"></div>
+                    </div>
                 </div>
+
+                <!-- Clock & Temperature/Feels Like - n.b. keep same in Weather & Kodi component ! -->
+                <div class="z-50 absolute bottom-0 right-0 mb-10 pr-10 text-right">
+                    <div class="text-8xl font-bold text-amber-200 font-mono whitespace-nowrap" x-text="`${currentTemperature}`"></div>
+                    <div class="pb-10 text-6xl font-bold text-blue-200 font-mono whitespace-nowrap" x-text="`(🌪 ${currentFeelsLike})`"></div>
+                    <div class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></div>
+                </div>
+
             </div>
-
-
-
         </div>
 
 <!-- If Kodi is actively playing something -->
 
         <div class="kodi" x-data="kodi" x-init="kodiComponentInit()" x-show="$store.isAvailable.kodi === true" x-transition.duration.500ms>
-
-            <div class="z-50 absolute top-0 right-0 mt-10 pr-10">
+            <div x-data="weather" x-init="weatherComponentInit()" class="weather">
                 <div class="clock" x-data="clock" x-init="clockComponentInit()">
-                    <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></span>
+
+                    <!-- Artwork -->
+                    <div class="absolute top-0 left align-middle max-w-lg">
+                        <img class="object-scale-down h-screen"  :src="artwork" />
+                    </div>
+
+                    <!-- Time Remaining -->
+                    <div class="z-50 absolute top-0 right-0 mt-10 mr-10" >
+                        <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="'-' + timeRemainingAsTime"></span>
+                    </div>
+
+                    <!-- Clock & Temperature/Feels Like - n.b. keep same in Weather & Kodi component -->
+                    <div class="z-50 absolute bottom-0 right-0 mb-10 pr-10 text-right">
+                        <div class="text-8xl font-bold text-amber-200 font-mono whitespace-nowrap" x-text="`${currentTemperature}`"></div>
+                        <div class="pb-10 text-6xl font-bold text-gray-400 font-mono whitespace-nowrap" x-text="`(🌪 ${currentFeelsLike})`"></div>
+                        <div class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></div>
+                    </div>
+
                 </div>
             </div>
-
-            <div class="absolute top-0 left align-middle max-w-lg">
-                <img class="object-scale-down h-screen"  :src="artwork" />
-            </div>
-
-            <div class="z-50 absolute bottom-0 right-0 mb-10 mr-10" >
-                <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="'-' + timeRemainingAsTime"></span>
-            </div>
-
         </div>
 
     </div>
