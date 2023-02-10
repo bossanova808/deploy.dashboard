@@ -6,7 +6,7 @@
     <title>Daalder Dashboard V1</title>
     <!-- Imports Tailwind & let Vite know about it -->
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-52ab9899.js"></script>
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-b0d9fe43.js"></script>
   <link rel="stylesheet" href="/deploy.dashboard/assets/index-2e3b4089.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
 
 <!-- Weather is available, but Kodi is not actively playing -->
 
-            <div x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.800ms>
+            <div x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
 
                 <!-- Forthcoming High / Low -->
                 <div class="absolute top-0 left-0 mt-3 ml-10" >
@@ -69,7 +69,7 @@
 
 <!-- If Kodi is actively playing something -->
 
-            <div x-show="$store.isAvailable.kodi === true" x-transition.duration.800ms>
+            <div x-show="$store.isAvailable.kodi === true" x-transition.duration.500ms>
 
                 <!-- Artwork -->
                 <div class="absolute top-0 left align-middle max-w-lg">
