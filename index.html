@@ -6,8 +6,8 @@
     <title>Daalder Dashboard V1</title>
     <!-- Imports Tailwind & let Vite know about it -->
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-962133c4.js"></script>
-  <link rel="stylesheet" href="/deploy.dashboard/assets/index-40e5e043.css">
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-4ce50572.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-16e2469e.css">
 </head>
 <body>
 
@@ -37,13 +37,13 @@
             <div x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
 
                 <!-- Forthcoming High / Low -->
-                <div class="absolute top-0 left-0 mt-3 ml-10" >
+                <div class="absolute top-0 left-0 mt-3 ml-5" >
                     <div class="text-8xl font-bold text-red-400 font-mono whitespace-nowrap" x-text="`↑${forecastHigh}`"></div>
                     <div class="text-8xl font-bold text-blue-200 font-mono whitespace-nowrap" x-text="`↓${forecastLow}`"></div>
                 </div>
 
                 <!-- Rain forecast & info -->
-                <div class="absolute top-0 right-0 mt-5 mr-10 max-w-3xl">
+                <div class="absolute top-0 right-0 mt-5 mr-5 max-w-3xl">
                     <div class="grid grid-cols-1 text-right">
                         <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap" x-text="`🌧   ${rainChance}% of ${rainAmount}`"></div>
                         <div class="text-6xl font-semibold text-amber-200 whitespace-nowrap" x-text="`(${rainSince9am}mm since 9am)`"></div>
@@ -59,7 +59,7 @@
                 </div>
 
                 <!-- Clock & Temperature/Feels Like - n.b. keep same in Weather & Kodi component ! -->
-                <div class="z-50 absolute bottom-0 right-0 mb-4 pr-10 text-right">
+                <div class="z-50 absolute bottom-0 right-0 mb-4 pr-5 text-right">
                     <div class="pb-5 text-8xl font-bold text-amber-200 font-mono whitespace-nowrap" x-text="`${currentTemperature}`"></div>
                     <div class="pb-10 text-6xl font-bold text-blue-200 font-mono whitespace-nowrap" x-text="`(${currentFeelsLike})`"></div>
                     <div class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></div>
@@ -77,12 +77,12 @@
                 </div>
 
                 <!-- Time Remaining -->
-                <div class="z-50 absolute top-0 right-0 mt-5 mr-10" >
+                <div class="z-50 absolute top-0 right-0 mt-5 mr-5" >
                     <span class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="timeRemainingAsTime"></span>
                 </div>
 
                 <!-- Clock & Temperature/Feels Like - n.b. keep same in Weather & Kodi component ! -->
-                <div class="z-50 absolute bottom-0 right-0 mb-4 pr-10 text-right">
+                <div class="z-50 absolute bottom-0 right-0 mb-4 pr-5 text-right">
                     <div class="pb-5 text-8xl font-bold text-amber-200 font-mono whitespace-nowrap" x-text="currentTemperature"></div>
                     <div class="pb-10 text-6xl font-bold text-blue-200 font-mono whitespace-nowrap" x-text="`(${currentFeelsLike})`"></div>
                     <div class="text-8xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-green-300 font-mono whitespace-nowrap" x-text="getTime()"></div>
