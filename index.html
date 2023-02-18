@@ -37,7 +37,7 @@
             <div x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
 
                 <!-- Forthcoming High / Low -->
-                <div x-show="$store.config.size!=='small'" class="absolute top-0 left-0 mt-3 ml-5" >
+                <div class="absolute top-0 left-0 mt-3 ml-5" >
                     <div :class="$store.config.textLarge" class="font-bold text-red-400 font-mono whitespace-nowrap" x-text="`↑${forecastHigh}`"></div>
                     <div :class="$store.config.textLarge" class="font-bold text-blue-200 font-mono whitespace-nowrap" x-text="`↓${forecastLow}`"></div>
                 </div>
@@ -72,7 +72,7 @@
             <div x-show="$store.isAvailable.kodi === true" x-transition.duration.500ms>
 
                 <!-- Artwork -->
-                <div x-show="$store.config.size!=='small'" class="absolute top-0 left align-middle max-w-lg">
+                <div class="absolute top-0 left align-middle max-w-lg">
                     <img class="object-scale-down h-screen"  :src="artwork" />
                 </div>
 
