@@ -6,8 +6,8 @@
     <title>Daalder Dashboard V1</title>
     <!-- Imports Tailwind & let Vite know about it -->
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-eb5b11d7.js"></script>
-  <link rel="stylesheet" href="/deploy.dashboard/assets/index-62d13877.css">
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-4dbee7ac.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-26bf38ca.css">
 </head>
 <body>
 
@@ -54,7 +54,7 @@
                 <div x-show="$store.config.size!=='small'" class="absolute bottom-0 left-0 mb-2">
                     <div class="grid grid-cols-1 justify-items-center">
                         <img class="mb-10 ml-6" :src="icon" :alt="iconAlt" :height="$store.config.weatherIconSize" :width="$store.config.weatherIconSize"/>
-                        <div :class="$store.config.textSmall" class="font-semibold text-amber-200 whitespace-nowrap m-0 ml-10" style="margin-top: -75px;" x-text="outlook"></div>
+                        <div :class="$store.config.textSmall" class="max-w-md font-semibold text-amber-200 m-0 ml-10 pb-5" style="margin-top: -100px;" x-text="outlook"></div>
                     </div>
                 </div>
 
