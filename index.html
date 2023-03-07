@@ -6,8 +6,8 @@
     <title>Daalder Dashboard V1</title>
     <!-- Imports Tailwind & let Vite know about it -->
     
-  <script type="module" crossorigin src="/deploy.dashboard/assets/index-789c5eb7.js"></script>
-  <link rel="stylesheet" href="/deploy.dashboard/assets/index-5356313b.css">
+  <script type="module" crossorigin src="/deploy.dashboard/assets/index-792727a5.js"></script>
+  <link rel="stylesheet" href="/deploy.dashboard/assets/index-806db2b3.css">
 </head>
 <body>
 
@@ -37,7 +37,7 @@
             <div x-show="$store.isAvailable.weather === true && $store.isAvailable.kodi === false" x-transition.duration.500ms>
 
                 <!-- Forthcoming High / Low -->
-                <div class="absolute top-0 left-0 mt-3 ml-5" >
+                <div class="absolute top-0 left-0 mt-3 ml-4" >
                     <div :class="$store.config.textMedium" class="font-bold text-red-400 font-mono whitespace-nowrap" x-text="`↑${forecastHigh}`"></div>
                     <div :class="$store.config.textMedium" class="font-bold text-blue-200 font-mono whitespace-nowrap" x-text="`↓${forecastLow}`"></div>
                 </div>
@@ -53,8 +53,8 @@
                 <!-- Outlook inc. icon -->
                 <div x-show="$store.config.size!=='small'" class="absolute bottom-0 left-0 mb-2">
                     <div class="grid grid-cols-1 justify-items-center">
-                        <img class="mb-14 pb-4 ml-6" :src="icon" :alt="iconAlt" :height="$store.config.weatherIconSize" :width="$store.config.weatherIconSize"/>
-                        <div :class="$store.config.textSmall" class="max-w-md font-semibold text-amber-200 m-0 ml-10 pb-3" style="margin-top: -75px;" x-text="outlook"></div>
+                        <img class="mb-14 pb-2 ml-6" :src="icon" :alt="iconAlt" :height="$store.config.weatherIconSize" :width="$store.config.weatherIconSize"/>
+                        <div :class="$store.config.textSmall" class="max-w-lg font-semibold text-amber-200 m-0 ml-8 pb-3" style="margin-top: -75px;" x-text="outlook"></div>
                     </div>
                 </div>
 
